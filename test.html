@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PeerHive</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    header img {
+      width: 180px;
+      height: auto;
+    }
+
+    h1 {
+      color: #333;
+      margin-top: 10px;
+    }
+
+    p {
+      color: #555;
+    }
+
+    .container {
+      display: flex;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .form-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    .form-box h2 {
+      margin-bottom: 15px;
+      color: #444;
+      text-align: center;
+    }
+
+    .form-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .form-box button {
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .form-box button:hover {
+      background: #45a049;
+    }
+
+    .message {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 10px;
+      background: #f1f1f1;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado con logo -->
+  <header>
+    <img src="peerhive.png" alt="PeerHive Logo">
+    <h1>Bienvenido a PeerHive</h1>
+    <p>Conectando estudiantes y asesores en la UADY</p>
+  </header>
+
+  <!-- Formularios -->
+  <div class="container">
+    <!-- Inicio de Sesión -->
+    <div class="form-box">
+      <h2>Iniciar Sesión</h2>
+      <input type="email" id="loginEmail" placeholder="Correo institucional">
+      <input type="password" id="loginPassword" placeholder="Contraseña">
+      <button onclick="login()">Ingresar</button>
+      <div class="message" id="loginMessage"></div>
+    </div>
+
+    <!-- Registro -->
+    <div class="form-box">
+      <h2>Registro</h2>
+      <input type="text" id="registerName" placeholder="Nombre completo">
+      <input type="email" id="registerEmail" placeholder="Correo institucional">
+      <input type="password" id="registerPassword" placeholder="Contraseña">
+      <button onclick="register()">Registrarse</button>
+      <div class="message" id="registerMessage"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 PeerHive - Proyecto académico UADY</p>
+  </footer>
+
+  <script>
+    // Usuarios de prueba
+    const users = [
+      { email: "a00000000@alumnos.uady.mx", password: "123", role: "Asesor" },
+      { email: "a00000001@alumnos.uady.mx", password: "1234", role: "Estudiante" }
+    ];
+
+    // Login
+    function login() {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      const message = document.getElementById("loginMessage");
+
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        message.style.color = "green";
+        message.textContent = `Bienvenido ${user.role}! ✅`;
+      } else {
+        message.style.color = "red";
+        message.textContent = "Correo o contraseña incorrectos ❌";
+      }
+    }
+
+    // Registro (solo muestra un mensaje)
+    function register() {
+      const name = document.getElementById("registerName").value;
+      const email = document.getElementById("registerEmail").value;
+      const password = document.getElementById("registerPassword").value;
+      const message = document.getElementById("registerMessage");
+
+      if (name && email && password) {
+        message.style.color = "green";
+        message.textContent = "Registro exitoso 🎉 (simulado)";
+      } else {
+        message.style.color = "red";
+        message.textContent = "Por favor completa todos los campos";
+      }
+    }
+  </script>
+
+</body>
+</html>
